@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 800px;
+
+}
+
+header h1 {
+    margin-bottom: 5px;
+	color: white;	
+}
+
+header p {
+    margin-top: 0;
+	color: white;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+#two-column-list h3 {
+	size: 15px;
+}
+
+
+#objective h2 {
+    color: #500000;
+}
+
+#education h2 {
+    color: #500000;
+}
+
+#coursework h2 {
+    color: #500000;
+}
+
+#experience h2 {
+    color: #500000;
+}
+
+#skills h2 {
+    color: #500000;
+}
+
+#achievements h2 {
+    color: #500000;
+}
+
+#references h2 { 
+	color: blue;
+}
+
+
+.two-column-list {
+    columns: 2;
+}
+
+.ribbon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px; 
+    height: 2px; 
+}
+
+header {
+background-color: #500000; 
+padding: 6px; 
+border: 6px solid gray; 
+}
+
+.logo-corner {
+	position: absolute;
+	top: 100px;
+	right: 0;
+	width: auto;
+	height: 300px;
+}
+
+.bluebonnets {
+	position: absolute;
+	top: 2350px;
+	right: 0;
+	width: auto; 
+    height: 500; 
+}
