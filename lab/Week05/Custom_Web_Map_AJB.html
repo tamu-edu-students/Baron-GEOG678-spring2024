@@ -19,7 +19,6 @@
 		width: 100vw;
 }
 		</style>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		</head>
 		<body>
 		<div id="map"></div>
@@ -33,7 +32,7 @@
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-	map.locate({setView: true, maxZoom: 16});
+	map.locate({setView: true, maxZoom: 13});
 	
 	function onLocationFound(e) {
     var radius = e.accuracy;
@@ -54,17 +53,29 @@ map.on('locationerror', onLocationError);
 
 // Marker
 
-	var greenIcon = L.icon({
-		iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
-		shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
+	var leiLow = L.icon({
+		iconUrl: 'https://img1.wsimg.com/isteam/ip/79c87e2c-ad37-43d2-89a2-13716c3c0e7b/Lei%20Low%20K.jpg/:/rs=h:148,cg:true,m/qt=q:95',
 
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
+    iconSize:     [234, 74], // size of the icon
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+	var mapleLeaf = L.icon({
+		iconUrl: 'https://static.wixstatic.com/media/207a96_1056cfecf92d4e888d491c41f47fdab1~mv2.jpg/v1/fill/w_86,h_80,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_2204.jpg',
+
+    iconSize:     [86, 80], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+	var nickelCity = L.icon({
+		iconUrl: 'https://images.squarespace-cdn.com/content/v1/59666ea5725e25d9e83ea384/bf20e509-1e5b-497a-9668-953e1c63548b/NC_border-logo-red.png?format=750w',
+
+    iconSize:     [86, 80], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 	
 	
 	var LeafIcon = L.Icon.extend({
@@ -78,7 +89,7 @@ map.on('locationerror', onLocationError);
     }
 });
 
-	var greenIcon = new LeafIcon({iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png'}),
+	var greenIcon = new LeafIcon({iconUrl: 'https://img1.wsimg.com/isteam/ip/79c87e2c-ad37-43d2-89a2-13716c3c0e7b/Lei%20Low%20K.jpg/:/rs=h:148,cg:true,m/qt=q:95'}),
 		redIcon = new LeafIcon({iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png'}),
 		orangeIcon = new LeafIcon({iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-orange.png'});
 	
@@ -86,9 +97,9 @@ map.on('locationerror', onLocationError);
     return new L.Icon(options);
 };
 
-	L.marker([29.808720, -95.389412], {icon: greenIcon}).addTo(map).bindPopup("Lei Low - Tiki Bar.");
-	L.marker([ 29.743694, -95.380825], {icon: redIcon}).addTo(map).bindPopup("Maple Leaf Pub - Hockey Bar.");
-	L.marker([ 29.746471, -95.348533], {icon: orangeIcon}).addTo(map).bindPopup("Nickel City - Bill's Bar.");
+	L.marker([29.808720, -95.389412], {icon: leiLow}).addTo(map).bindPopup("Lei Low - Tiki Bar.");
+	L.marker([ 29.743694, -95.380825], {icon: mapleLeaf}).addTo(map).bindPopup("Maple Leaf Pub - Hockey Bar.");
+	L.marker([ 29.746471, -95.348533], {icon: nickelCity}).addTo(map).bindPopup("Nickel City - Bill's Bar.");
 	
 // Popup
 
@@ -98,22 +109,17 @@ map.on('locationerror', onLocationError);
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
-    radius: 500
+    radius: 800
 }).addTo(map)
 
-	var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
-]).addTo(map);
 
-	marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-	circle.bindPopup("I am a circle.");
-	polygon.bindPopup("I am a polygon.");
+	marker.bindPopup("<b>This is Downtown Houston</b><br>I am a busy City!.").openPopup();
+	circle.bindPopup("HELP, I am a circle!");
+
 	
 	var popup = L.popup()
-    .setLatLng([51.513, -0.09])
-    .setContent("I am a standalone popup.")
+    .setLatLng([ 29.847354, -95.454296])
+    .setContent("This My House. It's For Sale!")
     .openOn(map);
 	
 	var popup = L.popup();
