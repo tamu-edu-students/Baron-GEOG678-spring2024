@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>College Station Weekly Temperature Forecast D3 - AJB</title>
+			<script src="https://d3js.org/d3.v7.min.js"></script>
+	</head>
+<body>
+    <div id="chart-container"></div>
+    <script src="script.js"></script>
+    <script>
+        // Data
+        const days = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat '];
+        const highestTemperatures = [82, 81, 81, 70, 77, 78, 79, 80];
+        const lowestTemperatures = [67, 59, 50, 47, 51, 60, 66, 66];
+
+        // Chart dimensions
+        const width = 800
+	;
+        const height = 400;
+        const margin = { top: 50, right: 20, bottom: 70, left: 50 };
+
+        // Create SVG element
+        const svg = d3.select("#chart-container")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Scales
+        const xScale = d3.scaleBand()
+            .domain(days)
+            .range([0, width])
+            .padding(0.1);
+
+        const yScale = d3.scaleLinear()
+            .domain([Math.min(45), Math.max(90)])
+            .range([height, 0]);
+
+        // Define the lines
+        const line = d3.line()
+            .x((d, i) => xScale(days[i]) + xScale.bandwidth() / 2)
+            .y(d => yScale(d));
+
+        // Draw lines
+        svg.append("path")
+            .datum(highestTemperatures)
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("stroke-width", 2)
+            .attr("d", line);
+
+        svg.append("path")
+            .datum(lowestTemperatures)
+            .attr("fill", "none")
+            .attr("stroke", "blue")
+            .attr("stroke-width", 2)
+            .attr("d", line);
+
+        // Draw points for highest temperatures
+        svg.selectAll(".point-high")
+            .data(highestTemperatures)
+            .enter().append("circle")
+            .attr("class", "point-high")
+            .attr("cx", (d, i) => xScale(days[i]) + xScale.bandwidth() / 2)
+            .attr("cy", d => yScale(d))
+            .attr("r", 4)
+            .attr("fill", "red");
+
+        // Draw points for lowest temperatures
+        svg.selectAll(".point-low")
+            .data(lowestTemperatures)
+            .enter().append("circle")
+            .attr("class", "point-low")
+            .attr("cx", (d, i) => xScale(days[i]) + xScale.bandwidth() / 2)
+            .attr("cy", d => yScale(d))
+            .attr("r", 4)
+            .attr("fill", "blue");
+
+        // Draw axes
+        const xAxis = d3.axisBottom(xScale);
+        svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", `translate(0, ${height})`)
+            .call(xAxis);
+
+        const yAxis = d3.axisLeft(yScale);
+        svg.append("g")
+            .attr("class", "y-axis")
+            .call(yAxis);
+
+        // Title
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", -margin.top / 2)
+            .attr("text-anchor", "middle")
+            .style("font-size", "20px")
+            .text("College Station Weekly Temperature Forecast - D3");
+
+        // Legend
+        const legend = svg.append("g")
+            .attr("class", "legend")
+          
+
+
+        legend.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", "red");
+
+        legend.append("text")
+            .attr("x", 30)
+            .attr("y", 15)
+            .style("font-size", "14px")
+            .text("Highest Temperature");
+
+        legend.append("rect")
+            .attr("x", 0)
+            .attr("y", 30)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", "blue");
+
+        legend.append("text")
+            .attr("x", 30)
+            .attr("y", 45)
+            .style("font-size", "14px")
+            .text("Lowest Temperature");
+    </script>
+</body>
+</html>
